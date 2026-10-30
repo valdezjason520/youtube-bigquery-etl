@@ -1,0 +1,52 @@
+video_id,primary_topic,secondary_topic,format_category,series,content_mechanic,inspiration_source,subject_type,is_sequel,sequel_number,is_movie_based,is_game_based,is_myth_based,is_history_based,is_product_test,is_collaboration,notes
+JyEmKqUN0ZQ,Death & Danger,Arcade / Leisure,Listicle,Things That Could Kill You,Knowledge List,Real Life,Everyday Hazard,0,1,0,0,0,0,0,0,Standalone location-based danger list
+NlpPPCs1arM,Death & Danger,World Records,I Tested,World Records,Challenge / Measurement,Real Life,Record / Challenge,0,1,0,0,0,0,0,0,Records framed as dangerous tests
+lfTHhmm2jlc,Death & Danger,Magic,I Tested,Deadly Tests,Demonstration / Recreation,Real Life,Magic Trick,0,1,0,0,0,0,0,0,Standalone deadly-magic concept
+IZrMBU7j9Yc,Products & Technology,Alarm Clocks,I Tested,Deadly Alarm Clocks,Stress Test,Consumer Products,Alarm Clock,1,2,0,0,0,0,1,0,Explicit sequel to Deadly Alarm Clocks
+uMG166BMpm8,Death & Danger,School,Listicle,Things That Could Kill You,Knowledge List,Real Life,School Hazard,0,1,0,0,0,0,0,0,Location-based danger list
+GjDnoDYSRsg,Myths,War / Military,I Tested,Deadly Myths,Myth Verification,History / Military,Myth / Historical Claim,0,1,0,0,1,1,0,0,War-focused myth testing
+j_tl39iujBA,Myths,Childhood,I Tested,Childhood Myths,Myth Verification,Childhood / Folklore,Myth,1,2,0,0,1,0,0,0,Explicit sequel to Dangerous Childhood Myths
+wHBenumLrYQ,Movies & Pop Culture,Movie Deaths,I Tested,Movie Deaths,Real-World Recreation,Movies,Movie Death Scene,1,3,1,0,0,0,0,0,Standalone entry within Movie Deaths family
+QKD_sn82_no,History,Armor / Weapons,I Tested,Historical Tests,Historical Reconstruction,History,Armor,0,1,0,0,0,1,0,0,Historical progression test
+53CR5bkK81g,Weapons,Global / Cultural Weapons,I Tested,Global Weapons,Comparison / Demonstration,History / Real Life,Weapon,0,1,0,0,0,1,0,0,Geographic framing rather than one franchise
+RM2pmh-uE-s,Myths,Childhood,I Tested,Childhood Myths,Myth Verification,Childhood / Folklore,Myth,0,1,0,0,1,0,0,0,First identified installment of Childhood Myths sequence
+tbEFbrg17Ls,Survival,Islands / Survival,I Tested,Survival Myths,Myth Verification,Real Life / Survival,Survival Scenario,0,1,0,0,1,0,0,0,Survival-focused myth testing
+bDqbLwHx8bg,Death & Danger,Home / Household,Listicle,Things That Could Kill You,Knowledge List,Real Life,Home Hazard,0,1,0,0,0,0,0,0,Household hazard list
+ngtxGtvzNT8,Myths,Movies,I Tested,Movie Myths,Myth Verification,Movies,Movie Myth,0,1,1,0,1,0,0,0,Movie-based myth testing
+Rwcs_RQxJkE,Weapons,Anime / Pop Culture,I Tested,Anime Weapons,Real-World Recreation,Anime / Fiction,Weapon,0,1,0,0,0,0,0,0,Anime weapon recreation
+d0BCwN2HoWU,Survival,Occupations,I Tried,Deadly Jobs,Challenge / Survival,Real Life,Job / Occupation,0,1,0,0,0,0,0,0,Creator-participation challenge format
+Z03Z4Ivy19o,Death & Danger,Survival / Escape,I Tried,Impossible Deaths,Challenge / Survival,Real Life,Survival Scenario,0,1,0,0,0,0,0,0,Creator attempts to escape dangerous scenarios
+cSUMn2HwsHA,Sports,Deadly Sports,Listicle,Sports,Knowledge List,Sports / Real Life,Sport,1,2,0,0,0,0,0,0,Explicit sequel to Sports series
+SQ6-22aB6RQ,History,Punishment / Torture,I Tested,Historical Tests,Historical Reconstruction,History,Punishment Device,0,1,0,0,0,1,0,0,Historical punishment progression
+GZc4emCavcQ,Weapons,Video Games,I Tested,Video Game Weapons,Real-World Recreation,Video Games,Weapon,1,2,0,1,0,0,0,0,Explicit sequel to Video Game Weapons
+xBWG48pBScs,Death & Danger,General / Everyday,Listicle,10 Things You Didn't Know Could Kill You,Knowledge List,Real Life,Everyday Hazard,1,3,0,0,0,0,0,0,Finale of named 10 Things series
+G8y1uDeYSVM,Death & Danger,Unusual Deaths,I Tested,Strange Deaths,Case Recreation / Demonstration,Real Life,Historical / Real-Life Death Case,0,1,0,0,0,0,0,0,Standalone unusual-death concept
+Mk2Bi_m6LcE,History,Weapons,I Tested,Historical Weapons,Historical Reconstruction,History,Weapon,0,1,0,0,0,1,0,0,Historical evolution framing
+DDIp43dQ7EA,Products & Technology,Toys / Childhood,I Tested,Deadly Kids Toys,Product Test,Consumer Products / Childhood,Toy,0,1,0,0,0,0,1,0,Product danger testing
+E_rfGNMisy4,Survival,Myths,Listicle,Survival Myths,Myth Verification,Internet / Survival,Myth,0,1,0,0,1,0,0,0,Survival myth list
+HPeCewlBMZs,Weapons,Horror Movies,I Tested,Movie Weapons,Real-World Recreation,Movies,Weapon,1,2,1,0,0,0,0,0,Horror movie weapon recreations
+0zGWJJI0pQw,Products & Technology,Home Security,I Tested,Home Security,Stress Test,Consumer Technology,Security System,0,1,0,0,0,0,1,0,Security-device stress testing
+xc5VWAXg7FI,Weapons,Video Games,I Tested,Video Game Weapons,Real-World Recreation,Video Games,Weapon,0,1,0,1,0,0,0,0,First identified installment of Video Game Weapons sequence
+wjEH1XST9DA,Death & Danger,Travel / Vacation,Listicle,Things That Could Kill You,Knowledge List,Travel,Hazard,0,1,0,0,0,0,0,0,Location/context variant of 10 Things series
+hWhgoxv8bf0,History,Weapons,I Tested,Historical Weapons,Historical Reconstruction,History,Weapon,0,1,0,0,0,1,0,0,First installment of 1000 Years of Weapons
+sUh4AgLja4w,Products & Technology,Durability,I Tested,Unbreakable Products,Stress Test,Consumer Products,Product,0,1,0,0,0,0,1,0,Durability-focused product testing
+70WwkGCgrDo,Death & Danger,Animal Traps,I Tested,Animal Traps,Stress Test,History / Real Life,Trap / Device,0,1,0,0,0,0,1,0,Trap/device testing with animal context
+zV3rEIfx7ng,Movies & Pop Culture,Movie Deaths,I Tested,Movie Deaths,Real-World Recreation,Movies,Movie Death Scene,1,2,1,0,0,0,0,0,Explicit sequel to Movie Deaths In Real Life
+H1mTuu1B9h0,Sports,Deadly Sports,Listicle,Sports,Knowledge List,Sports / Real Life,Sport,0,1,0,0,0,0,0,1,First identified installment of Sports sequence; collaborator/athlete participation
+l__66zN-I1w,Weapons,Spy / Movies,I Tested,Movie Weapons,Real-World Recreation,Movies,Weapon,0,1,1,0,0,0,0,0,Movie-inspired spy weapon recreation
+BthzYELwcYE,Products & Technology,Alarm Clocks,I Tested,Deadly Alarm Clocks,Stress Test,Consumer Products,Alarm Clock,0,1,0,0,0,0,1,0,First identified Alarm Clocks installment
+ZQCs1i58BIA,Products & Technology,Safety / Durability,I Tested,Death Proof Products,Stress Test,Consumer Products,Product,0,1,0,0,0,0,1,0,Product testing around death-proof claims
+AgaZ0vZBt5M,Sports,Boxing / Creator,Measurement,YouTuber Punch,Human Limit Test,YouTube Creators / Sports,Person / Punch Force,1,2,0,0,0,0,0,1,Explicit sequel and collaboration format
+e0sVG99iD5k,History,Punishment / Torture,I Tested,Historical Torture,Historical Reconstruction,History,Torture Device,0,1,0,0,0,1,0,0,Historical torture-device progression
+l8mcYObtugU,Death & Danger,General / Everyday,Listicle,10 Things You Didn't Know Could Kill You,Knowledge List,Real Life,Everyday Hazard,1,2,0,0,0,0,0,0,Explicit sequel to original 10 Things video
+8zJoTdXbAss,Weapons,Consumer Marketplace,I Tested,Temu Weapons,Product Test,Consumer Products / Online Marketplace,Weapon,0,1,0,0,0,0,1,0,Consumer-marketplace weapon testing
+NHW5wnkICRo,Sports,Boxing / Creator,Measurement,YouTuber Punch,Human Limit Test,YouTube Creators / Boxing,Person / Punch Force,0,1,0,0,0,0,0,1,First identified YouTuber punch measurement installment
+CMoLthIZiZU,Movies & Pop Culture,Home Alone,I Tested,Movie Traps,Real-World Recreation,Movies,Booby Trap,0,1,1,0,0,0,0,0,Specific movie-property recreation
+DaBTiMG2ruM,Movies & Pop Culture,Movie Deaths,I Tested,Movie Deaths,Real-World Recreation,Movies,Movie Death Scene,0,1,1,0,0,0,0,0,First identified Movie Deaths In Real Life installment
+F4gdcwJDsWg,Death & Danger,General / Everyday,Listicle,10 Things You Didn't Know Could Kill You,Knowledge List,Real Life,Everyday Hazard,0,1,0,0,0,0,0,0,First identified 10 Things series installment
+dw_owkDo8KM,Movies & Pop Culture,Video Games,Gaming Challenge,Game Challenges,Real-World Recreation / Physical Challenge,Video Games,Video Game / Physical Challenge,0,1,0,1,0,0,0,1,Video-game concept turned into real physical challenge
+wbKETxNuEyQ,Death & Danger,Work / Occupations,I Tested,Work Accidents,Case Recreation / Demonstration,Real Life,Workplace Hazard,0,1,0,0,0,0,0,0,Workplace accident recreations
+6CGafK3QGo0,Death & Danger,Shopping / Retail,I Tested,Strange Deaths,Case Recreation / Demonstration,Real Life,Everyday Hazard,0,1,0,0,0,0,0,0,Retail and shopping hazard recreations
+DlSAwOm8Xeg,Movies & Pop Culture,Horror Movies,I Tested,Movie Deaths,Real-World Recreation,Movies,Movie Death Scene,1,4,1,0,0,0,0,0,4th installment in Movie Deaths series (Horror-specific)
+7He8APXWeJA,Movies & Pop Culture,Horror Movies,I Tested,Movie Traps,Real-World Recreation,Movies,Booby Trap,1,2,1,0,0,0,0,0,Horror movie trap recreations (2nd installment in Movie Traps)
+JCnh-RfNkU4,Weapons,Horror Movies,I Tested,Movie Weapons,Real-World Recreation,Movies,Weapon,1,3,1,0,0,0,0,0,3rd installment in Movie Weapons series (2nd Horror Weapons video)

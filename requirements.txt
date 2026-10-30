@@ -1,0 +1,6 @@
+pandas
+requests
+openpyxl
+pandas-gbq
+google-cloud-bigquery
+pyarrow
