@@ -3,6 +3,15 @@ __pycache__/
 .DS_Store
 .env
 *.json
+*.twb
+*.twbx
 run_daily_etl.sh
 pipeline.log
 to_run_do_this.txt
+backfill_snapshots.py
+daily_snapshots_history.csv
+tableau_youtube_velocity.csv
+tyler_metadata_complete.csv
+tyler_metadata_complete.xlsx
+tyler_metadata_complete_clean.csv
+tyler_videos_*.csv
