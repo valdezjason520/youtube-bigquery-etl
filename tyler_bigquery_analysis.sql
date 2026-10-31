@@ -1,8 +1,9 @@
 -- =================================================================================
--- STEP 0: CREATE NORMALIZED STAR-SCHEMA VIEW IN BIGQUERY
--- Joins fact_youtube_performance (f) and dim_video_metadata (d) on video_id
+-- VIEWS: JOINED CHANNEL METADATA & DAILY VIEW VELOCITY
+-- Dataset: tyler_youtube (Google BigQuery Standard SQL)
 -- =================================================================================
 
+-- View 1: Joins latest API metrics (fact) with manual creative tags (dim)
 CREATE OR REPLACE VIEW `tyler_youtube.vw_tyler_complete` AS
 SELECT
     f.video_id,
@@ -35,12 +36,63 @@ FROM `tyler_youtube.fact_youtube_performance` AS f
 INNER JOIN `tyler_youtube.dim_video_metadata` AS d
     ON f.video_id = d.video_id;
 
+-- View 2: Calculates view gains between consecutive snapshot dates for each video
+CREATE OR REPLACE VIEW `tyler_youtube.vw_daily_velocity` AS
+WITH daily_deltas AS (
+    SELECT
+        PARSE_DATE('%Y-%m-%d', CAST(s.snapshot_date AS STRING)) AS snapshot_date,
+        MAX(PARSE_DATE('%Y-%m-%d', CAST(s.snapshot_date AS STRING))) OVER () AS max_snapshot_date,
+        s.video_id,
+        s.title,
+        d.primary_topic,
+        d.secondary_topic,
+        d.format_category,
+        d.series,
+        d.is_sequel,
+        DATE(CAST(s.published_at AS TIMESTAMP)) AS publish_date,
+        s.views AS current_views,
+        LAG(s.views) OVER (
+            PARTITION BY s.video_id 
+            ORDER BY PARSE_DATE('%Y-%m-%d', CAST(s.snapshot_date AS STRING)) ASC
+        ) AS prev_views,
+        LAG(PARSE_DATE('%Y-%m-%d', CAST(s.snapshot_date AS STRING))) OVER (
+            PARTITION BY s.video_id 
+            ORDER BY PARSE_DATE('%Y-%m-%d', CAST(s.snapshot_date AS STRING)) ASC
+        ) AS prev_date
+    FROM `tyler_youtube.fact_youtube_daily_snapshots` AS s
+    INNER JOIN `tyler_youtube.dim_video_metadata` AS d
+        ON s.video_id = d.video_id
+)
+SELECT
+    snapshot_date,
+    prev_date,
+    CASE WHEN snapshot_date = max_snapshot_date THEN 1 ELSE 0 END AS is_latest_snapshot,
+    video_id,
+    title,
+    primary_topic,
+    secondary_topic,
+    format_category,
+    series,
+    is_sequel,
+    publish_date,
+    DATE_DIFF(snapshot_date, publish_date, DAY) AS video_age_days,
+    current_views,
+    prev_views,
+    (current_views - prev_views) AS views_gained,
+    ROUND(
+        SAFE_DIVIDE(current_views - prev_views, GREATEST(DATE_DIFF(snapshot_date, prev_date, DAY), 1)),
+        0
+    ) AS views_gained_per_day,
+    ROUND(SAFE_DIVIDE(current_views - prev_views, prev_views) * 100, 2) AS pct_surge
+FROM daily_deltas
+WHERE prev_views IS NOT NULL;
+
 
 -- =================================================================================
--- PART 1: EXPLORATORY CHANNEL PERFORMANCE ANALYSIS (BIGQUERY STANDARD SQL)
+-- PART 1: CHANNEL PERFORMANCE BREAKDOWNS
 -- =================================================================================
 
--- 1. Best performing primary topics by average views (in millions)
+-- 1. Average views by primary topic
 SELECT 
     primary_topic,
     COUNT(*) AS video_count,
@@ -49,7 +101,7 @@ FROM `tyler_youtube.vw_tyler_complete`
 GROUP BY primary_topic
 ORDER BY avg_views_millions DESC;
 
--- 2. Best performing format categories
+-- 2. Average views by format category
 SELECT 
     format_category,
     COUNT(*) AS video_count,
@@ -58,7 +110,7 @@ FROM `tyler_youtube.vw_tyler_complete`
 GROUP BY format_category
 ORDER BY avg_views_millions DESC;
 
--- 3. Top performing recurring series (minimum 2 episodes)
+-- 3. Top recurring series (2+ installments)
 SELECT 
     series,
     COUNT(*) AS video_count,
@@ -70,7 +122,7 @@ HAVING COUNT(*) > 1
 ORDER BY avg_views_millions DESC
 LIMIT 5;
 
--- 4. Comparing category flags (Movie-Based, Game-Based, Product Test)
+-- 4. Performance across theme flags (Movie-Based, Game-Based, Product Test)
 SELECT 
     'Movie-Based' AS category,
     is_movie_based AS flag,
@@ -95,7 +147,7 @@ SELECT
 FROM `tyler_youtube.vw_tyler_complete`
 GROUP BY is_product_test;
 
--- 5. Performance of Sequels vs. Original/Standalone videos
+-- 5. Sequels vs. standalone uploads
 SELECT 
     CASE 
         WHEN is_sequel = 1 OR sequel_number >= 2 THEN 'Sequel' 
@@ -107,7 +159,7 @@ FROM `tyler_youtube.vw_tyler_complete`
 GROUP BY content_type
 ORDER BY avg_views_millions DESC;
 
--- 6. Top 5 highest-performing videos across the channel
+-- 6. Top 5 videos by total views
 SELECT 
     title, 
     primary_topic, 
@@ -119,7 +171,7 @@ FROM `tyler_youtube.vw_tyler_complete`
 ORDER BY views DESC
 LIMIT 5;
 
--- 7. Viewership by video duration tier
+-- 7. Viewership by video duration bucket
 SELECT 
     CASE 
         WHEN duration_seconds / 60.0 < 15 THEN 'Under 15 Mins'
@@ -141,7 +193,7 @@ FROM `tyler_youtube.vw_tyler_complete`
 GROUP BY content_mechanic
 ORDER BY avg_views_millions DESC;
 
--- 9. Collaborations vs. Solo videos
+-- 9. Collaborations vs. solo uploads
 SELECT 
     CASE 
         WHEN is_collaboration = 1 THEN 'Collaboration' 
@@ -153,7 +205,7 @@ FROM `tyler_youtube.vw_tyler_complete`
 GROUP BY video_type
 ORDER BY avg_views_millions DESC;
 
--- 10. Publishing day of week vs. average views
+-- 10. Upload day of week vs. average views
 SELECT 
     FORMAT_TIMESTAMP('%A', published_at) AS publish_day,
     COUNT(*) AS video_count,
@@ -164,10 +216,10 @@ ORDER BY avg_views_millions DESC;
 
 
 -- =================================================================================
--- PART 2: ADVANCED WINDOW FUNCTION QUERIES (FOR TECHNICAL INTERVIEWS)
+-- PART 2: CATEGORY BENCHMARKS, SERIES RETENTION & VELOCITY
 -- =================================================================================
 
--- 11. WINDOW FUNCTION: Topic Baseline Benchmarking & Outlier Detection
+-- 11. Video performance vs. primary topic baseline average
 SELECT 
     title,
     primary_topic,
@@ -185,7 +237,7 @@ SELECT
 FROM `tyler_youtube.vw_tyler_complete`
 ORDER BY primary_topic, rank_in_topic;
 
--- 12. WINDOW FUNCTION: Franchise & Sequel Fatigue Tracking (ROW_NUMBER + LAG)
+-- 12. Episode-over-episode audience retention / drop-off across recurring series
 WITH series_progression AS (
     SELECT 
         series,
@@ -208,7 +260,7 @@ FROM series_progression
 WHERE prev_episode_views IS NOT NULL
 ORDER BY ep_over_ep_growth_pct DESC;
 
--- 13. WINDOW FUNCTION: Rolling 3-Video Channel Momentum (Moving Average)
+-- 13. Rolling 3-video average views (channel momentum over time)
 SELECT 
     published_at,
     title,
@@ -223,3 +275,18 @@ SELECT
     ) AS rolling_3_video_avg_millions
 FROM `tyler_youtube.vw_tyler_complete`
 ORDER BY published_at DESC;
+
+-- 14. Top surging back-catalog videos from latest snapshot period
+SELECT
+    snapshot_date,
+    prev_date,
+    title,
+    primary_topic,
+    video_age_days,
+    views_gained,
+    views_gained_per_day,
+    pct_surge
+FROM `tyler_youtube.vw_daily_velocity`
+WHERE is_latest_snapshot = 1
+ORDER BY views_gained DESC
+LIMIT 15;
